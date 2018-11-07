@@ -117,8 +117,8 @@ export default {
   computed: {
     context() {
       /* eslint-disable */
-      if (this.activity._ui) {
-        const keys = this.activity._ui.order;
+      if (this.activity.ui) {
+        const keys = this.activity.ui.order;
         const self = this;
         return _.map(keys, k => self.activity[k]);
       }
