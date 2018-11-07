@@ -28,7 +28,7 @@ import _ from 'lodash';
 
 export default {
   name: 'radioInput',
-  props: ['constraints'],
+  props: ['constraints', 'init'],
   data() {
     return {
       selected: null,
@@ -45,6 +45,21 @@ export default {
       });
       /* eslint-ensable */
     },
+  },
+  watch: {
+    init: {
+      handler() {
+        if (this.init) {
+          this.selected = this.init.value;
+        }
+      },
+      deep: true,
+    }
+  },
+  mounted() {
+    if (this.init) {
+      this.selected = this.init.value;
+    }
   },
   methods: {
     sendData(val) {
