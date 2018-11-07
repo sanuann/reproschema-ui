@@ -1,0 +1,45 @@
+{
+    "@type": "https://schema.metadatacenter.org/core/Template",,
+    "@context": {
+        "@version": 1.1
+    },
+    "@id": "nda-common",
+    "skos:prefLabel": "NDA common items form",
+    "schema:description": null,
+    "src_subject_id": {
+        "@id": "http://localhost:8080/static/json/activities/NDA/items/src_subject_id.jsonld",
+        "@type": "@id"
+    },
+    "subjectkey": {
+        "@id": "http://localhost:8080/static/json/activities/NDA/items/subjectkey.jsonld",
+        "@type": "@id"
+    },
+    "gender": {
+        "@id": "http://localhost:8080/static/json/activities/NDA/items/gender.jsonld",
+        "@type": "@id"
+    },
+    "interview_age": {
+        "@id": "https://raw.githubusercontent.com/sanuann/schema-standardization/feature_schema_ui/activities/NDA/items/interview_age.jsonld",
+        "@type": "@id"
+    },
+    "interview_date": {
+        "@id": "https://raw.githubusercontent.com/sanuann/schema-standardization/feature_schema_ui/activities/NDA/items/interview_date.jsonld",
+        "@type": "@id"
+    },
+    "ui": {
+        "order": [
+            "src_subject_id",
+            "subjectkey",
+            "gender",
+            "interview_age",
+            "interview_date"
+        ],
+        "pages": []
+    },
+    "pav:createdOn": null,
+    "pav:createdBy": null,
+    "pav:lastUpdatedOn": null,
+    "oslc:modifiedBy": null,
+    "schema:schemaVersion": "0.0.1",
+    "bibo:status": "bibo:draft"
+}
