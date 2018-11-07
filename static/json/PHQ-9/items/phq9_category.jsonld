@@ -1,0 +1,21 @@
+{
+    "@context": "https://raw.githubusercontent.com/sanuann/schema-standardization/feature_schema_ui/activities/PHQ-9/context.jsonld",
+    "@id": "phq9_category",
+    "@type": "https://schema.metadatacenter.org/core/TemplateField",
+    "rdfs:label": "Category",
+    "schema:description": "PHQ9 Assessment Category",
+    "schema:schemaVersion": "0.0.1",
+    "ui": {
+        "inputType": "text",
+        "readonly": true,
+        "hidden": true
+    },
+    "valueConstraints": {
+        "valueSets": ["minimal", "mild", "moderate", "moderately severe", "severe"]
+    },
+    "pav:derivedFrom": "phq9_total_score",
+    "pav:createdOn": null,
+    "pav:createdBy": null,
+    "pav:lastUpdatedOn": null,
+    "oslc:modifiedBy": null
+}

@@ -1,0 +1,34 @@
+{
+    "@context": "https://raw.githubusercontent.com/sanuann/schema-standardization/feature_schema_ui/activities/PHQ-9/context.jsonld",
+    "@type": "https://schema.metadatacenter.org/core/TemplateField",
+    "question": {
+      "@value": "Select Language"
+    },
+    "schema:description": null,
+    "schema:schemaVersion": "0.0.1",
+    "ui": {
+        "inputType": "radio",
+        "shuffle": false
+    },
+    "valueConstraints": {
+        "type": "xsd:string",
+        "minimum": 0,
+        "maximum": 1,
+        "multipleChoice": false,
+        "choices": [
+            {
+                "label": "en",
+                "@value": 0
+            },
+            {
+                "label": "es",
+                "@value": 1
+            }
+        ]
+    },
+    "skos:related": null,
+    "pav:createdOn": null,
+    "pav:createdBy": null,
+    "pav:lastUpdatedOn": null,
+    "oslc:modifiedBy": null
+}

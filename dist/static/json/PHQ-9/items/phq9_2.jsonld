@@ -1,0 +1,74 @@
+{
+    "@context": "https://raw.githubusercontent.com/sanuann/schema-standardization/feature_schema_ui/activities/PHQ-9/context.jsonld",
+    "@type": "https://schema.metadatacenter.org/core/TemplateField",
+    "question": {
+      "@language": "en",
+      "@value": "Feeling down, depressed or hopeless?"
+    },
+    "schema:description": "FDE of Q2 of the PHQ-9 Assessment",
+    "title": [{
+      "@language": "en",
+      "@value": "Feeling down, depressed or hopeless?"
+    },
+      {
+        "@language": "es",
+        "@value": "Feeling down, depressed or hopeless?"
+      }
+    ],
+    "active_question": {
+      "item": "select_language",
+      "choice_field": "@language"
+    },
+    "_ui": {
+        "inputType": "radio",
+        "shuffle": false
+    },
+    "_valueConstraints": {
+      "type": "xsd:integer",
+      "minimum": 0,
+      "maximum": 3,
+      "multipleChoice": false,
+      "choices": [
+        {
+          "label": "Not at all",
+          "@value": 0
+        },
+        {
+          "label": "Several days",
+          "@value": 1
+        },
+        {
+          "label": "More than half the days",
+          "@value": 2
+        },
+        {
+          "label": "Nearly everyday",
+          "@value": 3
+        },
+        {
+          "label": "Don't know",
+          "@value": 4
+        },
+        {
+          "label": "Refuse to answer",
+          "@value": 5
+        }
+      ]
+    },
+    "requiredValue": false,
+    "skos:related": null,
+    "pav:createdOn": null,
+    "pav:createdBy": null,
+    "pav:lastUpdatedOn": null,
+    "oslc:modifiedBy": null,
+    "Meta": [ {
+      "group": "CDE",
+      "relationship": "same",
+      "notes": null,
+      "reference": "https://...."
+    },{
+      "group": "LOINC"
+    }
+    ]
+}
+
