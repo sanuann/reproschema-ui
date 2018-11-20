@@ -53,6 +53,7 @@
             <router-view
               :srcUrl="srcUrl" :responses="responses[activityIndex]"
               :selected_language="selected_language"
+              :progress="progress[activityIndex]"
               v-on:updateProgress="updateProgress"
               v-on:saveResponse="saveResponse"
             />
@@ -109,7 +110,7 @@ export default {
     saveResponse(key, value) {
       this.responses[this.activityIndex][key] = value;
       // eslint-disable-next-line
-      console.log('TOTAL RESPONSE:', this.responses);
+      // console.log('TOTAL RESPONSE:', this.responses);
       this.$forceUpdate();
     },
   },

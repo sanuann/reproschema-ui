@@ -6,6 +6,11 @@
     </div>
     <div v-else>
       <b-progress :value="listShow.length" :max="context.length" class="mb-3"></b-progress>
+      <div v-if="this.progress == 100">
+        <b-button class="" variant="default" @click="downloadResponse()">
+          <strong> Download </strong>
+        </b-button>
+      </div>
       <div v-if="preambleText" class="preamble-text">
         <strong> {{ preambleText }} </strong>
       </div>
@@ -64,7 +69,7 @@ import Loader from './Loader';
 
 export default {
   name: 'Home',
-  props: ['srcUrl', 'responses', 'selected_language'],
+  props: ['srcUrl', 'responses', 'selected_language', 'progress'],
   data() {
     return {
       activity: {},
@@ -103,17 +108,17 @@ export default {
     },
     nextQuestion(idx, skip, dontKnow) {
       if (skip) {
-        this.$emit('saveResponse', this.context[idx]['@id'], { skipped: 1, value: null, question: this.activity.ui.order[idx]});
+        this.$emit('saveResponse', this.context[idx]['@id'], { [this.activity.ui.order[idx]]: {skipped: 1, value: null}});
       }
       if (dontKnow) {
-        this.$emit('saveResponse', this.context[idx]['@id'], { dontKnow: 1, value: null,question: this.activity.ui.order[idx]});
+        this.$emit('saveResponse', this.context[idx]['@id'], { [this.activity.ui.order[idx]]: {dontKnow: 1, value: null}});
       }
       if (idx === this.listShow.length - 1) {
         this.listShow.push(_.max(this.listShow) + 1);
       }
     },
     setResponse(value, index) {
-      this.$emit('saveResponse', this.context[index]['@id'], {value, skipped: 0, dontKnow: 0, question: this.activity.ui.order[index]});
+      this.$emit('saveResponse', this.context[index]['@id'], { [this.activity.ui.order[index]]: {value, skipped: 0, dontKnow: 0 }});
       if (this.activity.scoringLogic) {
         var scoringLogic = this.activity.scoringLogic.code;
         if (this.responses) {
@@ -131,6 +136,23 @@ export default {
           }
         }
       }
+    },
+    downloadResponse() {
+      const responseData = this.responses;
+      let jsonR = {};
+      Object.keys(responseData).forEach(function(key) {
+        var valueObject = responseData[key];
+        Object.assign(jsonR, valueObject);
+      });
+      const jsonData = JSON.stringify(jsonR);
+      const blob = new Blob([jsonData], {type: 'text/plain'});
+      const e = document.createEvent('MouseEvents'),
+        a = document.createElement('a');
+      a.download = "response.json";
+      a.href = window.URL.createObjectURL(blob);
+      a.dataset.downloadurl = ['text/json', a.download, a.href].join(':');
+      e.initEvent('click', true, false, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
+      a.dispatchEvent(e);
     },
   },
   watch: {
