@@ -52,6 +52,11 @@
       <DocumentUpload :constraints="valueConstraints" :init="init" v-on:valueChanged="sendData"/>
     </div>
 
+    <!-- If type is place -->
+    <div v-else-if="inputType==='place'">
+      <PlaceInput :constraints="valueConstraints" :init="init" v-on:valueChanged="sendData"/>
+    </div>
+
     <!-- if we don't have a component built for this type, then show an error -->
     <div v-else>
       <b-alert show>
@@ -80,6 +85,7 @@ import IntegerInput from '../Inputs/WebIntegerInput/';
 import DateInput from '../Inputs/DateInput/';
 import MultiPart from '../MultiPart/';
 import DocumentUpload from '../Inputs/DocumentUpload';
+import PlaceInput from '../Inputs/PlaceInput';
 
 
 export default {
@@ -112,6 +118,7 @@ export default {
     IntegerInput,
     DateInput,
     DocumentUpload,
+    PlaceInput,
     MultiPart,
   },
   data() {
