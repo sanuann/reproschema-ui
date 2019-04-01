@@ -1,12 +1,12 @@
 <template>
   <div class="DocumentUpload">
-    <input type="file" @change="onFileSelected">
+    <input type="file" accept="image/*" @change="onFileSelected">
     <button @click="onSubmit">Upload</button>
-
   </div>
 </template>
 
 <script>
+import axios from 'axios';
 
 export default {
   name: 'DocumentUpload',
@@ -24,17 +24,25 @@ export default {
     onSubmit(e) {
       e.preventDefault();
       console.log(26, this.selectedFile);
+      const URL = 'http://localhost:8080/upload';
+      const fd = new FormData();
+      fd.append('image', this.selectedFile, this.selectedFile.name);
+      const config = {
+        header: {
+          'Content-Type': 'image/png',
+        },
+      };
+      axios.put(URL, fd, config).then((response) => {
+        console.log('image upload response > ', response);
+      },
+      );
       this.$emit('valueChanged', this.selectedFile);
-    },
-  },
-  computed: {
-    c() {
-      return this.a + this.b;
     },
   },
   data() {
     return {
       selectedFile: null,
+      file: '',
     };
   },
   mounted() {
