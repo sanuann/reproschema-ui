@@ -316,7 +316,7 @@ export default {
       return '';
     },
     /**
-     * we need to keep an eye on the store. 
+     * we need to keep an eye on the store.
      */
     readyForActivity() {
       if (this.$store) {

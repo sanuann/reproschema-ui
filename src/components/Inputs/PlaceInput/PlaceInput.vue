@@ -3,14 +3,12 @@
     <b-form @submit="onSubmit">
       <b-form-group>
         <input type="text" v-model="search"
-               @input="onChange"/>
-      <ul v-show="isOpen" class="autocomplete-results">
-        <li
-          v-for="(result, i) in results"
-          :key="i" @click="setResult(result)" class="autocomplete-result">
-          {{ result }}
-        </li>
-      </ul>
+               @input="onInput"/>
+        <ul class="suggestion-list">
+          <li v-for="(suggestion, index) in results " :key="index">
+            {{ suggestion[0] }}
+          </li>
+        </ul>
       </b-form-group>
       <b-btn type="submit">Submit</b-btn>
     </b-form>
@@ -19,6 +17,7 @@
 </template>
 
 <script>
+import _ from 'lodash';
 import axios from 'axios';
 
 const AUTOCOMPLETION_URL = 'https://autocomplete.geocoder.api.here.com/6.2/suggest.json';
@@ -29,6 +28,16 @@ let query = '';
 export default {
   name: 'PlaceInput',
   props: ['constraints', 'init', 'appId', 'appCode'],
+  data() {
+    return {
+      input: '',
+      search: '',
+      results: [],
+      isOpen: false,
+      selectedOption: null,
+      open: false,
+    };
+  },
   methods: {
     onSubmit(e) {
       e.preventDefault();
@@ -47,6 +56,9 @@ export default {
       this.isOpen = false;
     },
     onInput(event) {
+      if (!this.open) {
+        this.open = true;
+      }
       const inputValue = event.target.value;
       if (query !== inputValue) {
         if (inputValue.length >= 1) {
@@ -56,12 +68,25 @@ export default {
             // in the response.  Default is set to 5.
             `&app_id=${APPLICATION_ID}&app_code=${APPLICATION_CODE}`;
           axios.get(AUTOCOMPLETION_URL + params)
-            .then(response => console.log(49, response.data.suggestions));
+            .then((response) => {
+              const cityList = response.data.suggestions;
+              _.map(cityList, (eachCity) => {
+                // console.log(49, eachCity.label);
+                this.results = eachCity.label;
+              });
+            });
           // axios.post();
         }
+        return '';
       }
       query = inputValue;
+      return '';
       // this.$emit('valueChanged', event.target.value);
+    },
+    searchChanged() {
+      if (!this.open) {
+        this.open = true;
+      }
     },
     /**
      * If the text in the text box  has changed, and is not empty,
@@ -83,14 +108,6 @@ export default {
       }
       query = textBox.value;
     },
-  },
-  data() {
-    return {
-      input: '',
-      search: '',
-      results: [],
-      isOpen: false,
-    };
   },
   mounted() {
     if (this.init) {
@@ -125,4 +142,33 @@ export default {
     background-color: #4AAE9B;
     color: white;
   }
+
+  .dropdown {
+    display: inline-block;
+    position: relative;
+  }
+
+  .suggestion-list {
+    background-color: rgba(255, 255, 255, 0.95);
+    border: 1px solid #ddd;
+    list-style: none;
+    display: block;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    overflow: hidden;
+    position: absolute;
+    top: 20px;
+    left: 0;
+    z-index: 2;
+  }
+
+  .dropdown.open .suggestion-list {
+    display: block;
+  }
+
+  .dropdown .suggestion-list {
+    display: none;
+  }
+
 </style>
