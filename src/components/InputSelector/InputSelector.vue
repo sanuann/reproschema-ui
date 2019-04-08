@@ -123,6 +123,7 @@ import PlaceInput from '../Inputs/PlaceInput';
 import MultiTextInput from '../Inputs/MultiTextInput';
 import SliderInput from '../Inputs/SliderInput';
 
+
 export default {
   name: 'InputSelector',
   props: {
