@@ -127,8 +127,8 @@
 </template>
 
 <script>
-import MainNav from '../web/MainNav';
-import Footer from '../web/Footer';
+import MainNav from '../MainNav';
+import Footer from '../Footer';
 
 export default {
   name: 'Landing',
