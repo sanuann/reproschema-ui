@@ -128,8 +128,12 @@
               Find out now!</p>
 
             <p style="margin-top: 2rem">
-              <router-link class="join-button" to="/study/intro">Join</router-link>
+              <router-link class="join-button" to="/intro">Join</router-link>
             </p>
+            <!--<div class="container">-->
+            <!--<vue-markdown v-if="content"> {{content}} </vue-markdown>-->
+            <!--<Loader v-else/>-->
+            <!--</div>-->
           </div>
         </div>
       </section>
@@ -138,8 +142,32 @@
 </template>
 
 <script>
+
+import axios from 'axios';
+import VueMarkdown from 'vue-markdown';
+import Loader from '../Loader';
+
 export default {
   name: 'Landing',
+  props: {
+    contentSrc: {
+      type: String,
+    },
+  },
+  components: {
+    VueMarkdown,
+    Loader,
+  },
+  data() {
+    return {
+      content: null,
+    };
+  },
+  mounted() {
+    axios.get(this.contentSrc).then((resp) => {
+      this.content = resp.data;
+    });
+  },
 };
 </script>
 

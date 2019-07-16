@@ -3,6 +3,7 @@ import BridgeImage from '@/components/BridgeImage';
 import Router from 'vue-router';
 import Home from '@/components/Survey/';
 import Landing from '@/components/Landing/';
+import StudyIntroduction from '@/components/StudyIntroduction/';
 import config from '../config';
 
 Vue.use(Router);
@@ -18,6 +19,11 @@ export default new Router({
       props: {
         contentSrc: config.contentSrc,
       },
+    },
+    {
+      path: '/intro',
+      name: StudyIntroduction,
+      component: StudyIntroduction,
     },
     {
       path: '/activities/:id',
