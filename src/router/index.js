@@ -21,7 +21,7 @@ export default new Router({
       },
     },
     {
-      path: '/intro',
+      path: '/study/intro',
       name: StudyIntroduction,
       component: StudyIntroduction,
     },

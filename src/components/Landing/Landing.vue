@@ -128,7 +128,7 @@
               Find out now!</p>
 
             <p style="margin-top: 2rem">
-              <router-link class="join-button" to="/intro">Join</router-link>
+              <router-link class="join-button" to="/study/intro">Join</router-link>
             </p>
             <!--<div class="container">-->
             <!--<vue-markdown v-if="content"> {{content}} </vue-markdown>-->
